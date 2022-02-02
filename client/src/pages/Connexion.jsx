@@ -3,12 +3,12 @@ import useForm from "../hooks/useForm";
 import connexionValidate from "../utils/formValidate/connexionValidate";
 
 const INITIAL_STATE = {
-    "email": '',
-    "password": ''
+    email: '',
+    password: ''
 }
 function Connexion ()
 {
-    const {handleChange, handleSubmit, errors, isSubmitted} = useForm(INITIAL_STATE, connexionValidate());
+    const {handleChange, handleSubmit, errors, isSubmitted} = useForm(INITIAL_STATE, connexionValidate);
 
     const onSubmit = (value) =>
     {
