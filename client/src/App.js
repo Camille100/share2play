@@ -1,17 +1,17 @@
-import {Routes, Route} from "react-router-dom";
-import Connexion from "./pages/Connexion";
-import Inscription from "./pages/Inscription";
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Connexion from './pages/Connexion';
+import Inscription from './pages/Inscription';
+import './assets/index.scss';
 
 function App() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/connexion" element={<Connexion />} />
-        <Route path="/inscription" element={<Inscription />} />
-      </Routes>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Routes>
+                <Route path="/connexion" element={<Connexion />} />
+                <Route path="/inscription" element={<Inscription />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
