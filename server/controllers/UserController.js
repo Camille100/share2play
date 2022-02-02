@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const UserSchema = require('../schemas/userSchema');
 const isEmpty = require('../utils/isEmpty');
 const isValid = require('../utils/isValid');
@@ -11,10 +10,11 @@ exports.registration = async (req, res) => {
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const passwordRegx =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
     const errorsMessage = [];
 
     const {
-        firstname,
+        firstName,
         lastName,
         email,
         emailConfirm,
@@ -26,8 +26,8 @@ exports.registration = async (req, res) => {
     } = req.body;
 
     const lastNameEmpty = isEmpty(lastName, 'Vous devez indiquer votre nom');
-    const firstnameEmpty = isEmpty(
-        firstname,
+    const firstNameEmpty = isEmpty(
+        firstName,
         'Vous devez indiquer votre prénom'
     );
     const emailEmpty = isEmpty(email, 'Vous devez indiquer votre email');
@@ -37,36 +37,33 @@ exports.registration = async (req, res) => {
     );
     const passwordEmpty = isEmpty(
         password,
-        'Vous devez indiquer votre mot de passe'
+        'Vous devez entrer votre mot de passe'
     );
-    const cityEmpty = isEmpty(city, 'Vous devez indiquer votre ville');
-    const zipEmpty = isEmpty(zip, 'Vous devez indiquer votre code postal');
-    const addressEmpty = isEmpty(
-        address,
-        'Vous devez indiquer votre code adresse'
-    );
+    const cityEmpty = isEmpty(city, 'Vous devez entrer votre ville');
+    const addressEmpty = isEmpty(address, 'Vous devez entrer votre adresse');
+    const zipEmpty = isEmpty(zip, 'Vous devez entrer votre code postal');
 
     const emailValid = isValid(
         email,
         emailRegx,
-        "Votre adresse mail n'est pas valide"
+        "Votre email n'est pas valide"
     );
 
     const emailEqual = isEqual(
         email,
         emailConfirm,
-        'Vos mails ne sont pas identiques'
+        'Vos emails ne correspondent pas'
     );
 
     const passwordValid = isValid(
         password,
         passwordRegx,
-        'Votre mot de passe doit contenir au moins 8 caractèes, une minuscule, une majuscule, un chiffre et un caractère spécial'
+        'Votre mot de passe doit contenir au moins 8 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial'
     );
 
     if (
         lastNameEmpty.error ||
-        firstnameEmpty.error ||
+        firstNameEmpty.error ||
         emailEmpty.error ||
         emailConfirmEmpty.error ||
         passwordEmpty.error ||
@@ -74,12 +71,12 @@ exports.registration = async (req, res) => {
         zipEmpty.error ||
         addressEmpty.error ||
         emailValid.error ||
-        emailEqual.error ||
-        passwordValid.error
+        passwordValid.error ||
+        emailEqual.error
     ) {
         errorsMessage.push(
             { message: lastNameEmpty.message },
-            { message: firstnameEmpty.message },
+            { message: firstNameEmpty.message },
             { message: emailEmpty.message },
             { message: emailConfirmEmpty.message },
             { message: passwordEmpty.message },
@@ -87,17 +84,19 @@ exports.registration = async (req, res) => {
             { message: zipEmpty.message },
             { message: addressEmpty.message },
             { message: emailValid.message },
-            { message: emailEqual.message },
-            { message: passwordValid.message }
+            { message: passwordValid.message },
+            { message: emailEqual.message }
         );
     }
 
     if (pseudo && (await UserSchema.findOne({ pseudo }))) {
-        errorsMessage.push({ message: 'Ce pseudo est déjà utilisé.' });
+        errorsMessage.push({ message: 'Ce pseudo est déjà utilisé' });
     }
 
     if (!emailEmpty.error && (await UserSchema.findOne({ email }))) {
-        errorsMessage.push({ message: 'Cette adresse mail est déjà utilisée' });
+        errorsMessage.push({
+            message: 'Cette adresse email est déjà utilisée',
+        });
     }
 
     if (errorsMessage.length > 0) return res.status(200).json(errorsMessage);
