@@ -1,16 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const useForm = (initialState, validate) => {
     const [values, setValues] = useState(initialState);
-    const [errors] = useState(validate(values))
+    const [errors, setErrors] = useState(validate(values))
+
+    useEffect(() => {
+        setErrors(validate(values))
+    }, [values])
 
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const handleChange = (event) => {
         event.persist();
+
         setValues((prevValues) => ({
             ...prevValues,
-            [event.target.name]: event.target.values
+            [event.target.name]: event.target.value
         }))
     }
 
