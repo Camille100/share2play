@@ -1,51 +1,110 @@
 import React from "react";
+import useForm from '../hooks/useForm';
+import inscriptionValidate from '../utils/formValidate/inscriptionValidate';
 
 function Inscription() {
+
+    const INITIAL_STATE = {
+        lastName: '',
+        firstName: '',
+        pseudo: '',
+        address: '',
+        zip: '',
+        city: '',
+        email: '',
+        password: ''
+    }
+
+    const { handleChange, handleSubmit, errors, isSubmitted } = useForm(INITIAL_STATE, inscriptionValidate);
+
+    const onSubmit = (value) => {
+        console.log(value);
+    }
+
   return (
     <div>
-      <form>
+      <form onSubmit={e => handleSubmit(onSubmit, e)}>
         <div className="box-input">
-          <label for="lastName">Nom : </label>
-          <input type="text" name="lastName" id="lastName" required="required" />
+          <label htmlFor="lastName">Nom : </label>
+          <input type="text" name="lastName" id="lastName" required="required" onChange={handleChange} />
+          <div className="box-errors">
+              {
+                  isSubmitted && errors.lastNameEmpty
+              }
+          </div>
         </div>
 
         <div className="box-input">
-          <label for="firstName">Prénom : </label>
-          <input type="text" name="firstName" id="firstName" required="required" />
-        </div>
-        <div className="box-input">
-          <label for="pseudo">Pseudo : </label>
-          <input type="text" name="pseudo" id="pseudo" />
-        </div>
-
-        <div className="box-input">
-          <label for="address">Adresse : </label>
-          <input type="text" name="address" id="address" required="required" />
+          <label htmlFor="firstName">Prénom : </label>
+          <input type="text" name="firstName" id="firstName" required="required" onChange={handleChange} />
+          <div className="box-errors">
+              {
+                  isSubmitted && errors.firstNameEmpty
+              }
+          </div>
         </div>
 
         <div className="box-input">
-          <label for="zip">Code postal : </label>
-          <input type="text" name="zip" id="zip" required="required" />
+          <label htmlFor="pseudo">Pseudo : </label>
+          <input type="text" name="pseudo" id="pseudo" onChange={handleChange} />
         </div>
 
         <div className="box-input">
-          <label for="city">Commune : </label>
-          <input type="text" name="city" id="city" required="required" />
+          <label htmlFor="address">Adresse : </label>
+          <input type="text" name="address" id="address" required="required" onChange={handleChange} />
+          <div className="box-errors">
+              {
+                  isSubmitted && errors.addressEmpty
+              }
+          </div>
         </div>
 
         <div className="box-input">
-          <label for="email">Adresse mail : </label>
-          <input type="email" name="email" id="email" required="required" />
+          <label htmlFor="zip">Code postal : </label>
+          <input type="text" name="zip" id="zip" required="required" onChange={handleChange} />
+          <div className="box-errors">
+              {
+                  isSubmitted && errors.zipEmpty
+              }
+          </div>
         </div>
 
         <div className="box-input">
-          <label for="emailConfirm">Confirmez votre adresse mail : </label>
-          <input type="email" name="emailConfirm" id="emailConfirm" required="required" />
+          <label htmlFor="city">Commune : </label>
+          <input type="text" name="city" id="city" required="required" onChange={handleChange} />
+          {
+                  isSubmitted && errors.cityEmpty
+              }
         </div>
 
         <div className="box-input">
-          <label for="password">Mot de passe : </label>
-          <input type="password" name="password" id="password" required="required" />
+          <label htmlFor="email">Adresse mail : </label>
+          <input type="email" name="email" id="email" required="required" onChange={handleChange} />
+          {
+                  isSubmitted && errors.emailEmpty && errors.emailValid
+              }
+        </div>
+
+        <div className="box-input">
+          <label htmlFor="emailConfirm">Confirmez votre adresse mail : </label>
+          <input type="email" name="emailConfirm" id="emailConfirm" required="required" onChange={handleChange} />
+          {
+                  isSubmitted && errors.emailConfirmEmpty && errors.emailConfirmEqual
+              }
+        </div>
+
+        <div className="box-input">
+          <label htmlFor="password">Mot de passe : </label>
+          <input type="password" name="password" id="password" required="required" onChange={handleChange} />
+          {
+                  isSubmitted && errors.passwordEmpty &&
+                  errors.passwordLengthCharacter &&
+                  errors.passwordLowercase &&
+                  errors.passwordNoSpace &&
+                  errors.passwordSpecialCharacter &&
+                  errors.passwordUppercase &&
+                  errors.passwordIny
+              }
         </div>
         <input type="submit" value="Envoyer" />
       </form>
