@@ -6,6 +6,7 @@ const isEmpty = (value, errorMessage) => {
             message: errorMessage,
         };
     }
+
     return {
         error: false,
     };
