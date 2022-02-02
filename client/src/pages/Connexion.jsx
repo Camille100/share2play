@@ -1,3 +1,5 @@
+import '../assets/layout/connexion.scss';
+
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -33,40 +35,41 @@ function Connexion() {
     };
 
     return (
-        <main>
-            <h1>Connexion</h1>
+        <main className="connexion">
+            <h1>CONNEXION</h1>
             <form onSubmit={(e) => handleSubmit(onSubmit, e)}>
                 <div className="box-input">
-                    <label htmlFor="email">
-                        Email :
-                        <input
-                            type="text"
-                            name="email"
-                            placeholder="Votre email"
-                            required="required"
-                            onChange={handleChange}
-                        />
-                    </label>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="Votre email"
+                        required="required"
+                        onChange={handleChange}
+                    />
                     <div className="box-errors">
                         {isSubmitted && errors.emailEmpty}
                     </div>
                 </div>
                 <div className="box-input">
-                    <label htmlFor="password">
-                        Password :
-                        <input
-                            type="text"
-                            name="password"
-                            placeholder="Votre mot de passe"
-                            required="required"
-                            onChange={handleChange}
-                        />
-                    </label>
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="text"
+                        name="password"
+                        placeholder="Votre mot de passe"
+                        required="required"
+                        onChange={handleChange}
+                    />
+                    <div className="box-errors">
+                        {isSubmitted && errors.passwordEmpty}
+                    </div>
                 </div>
-                <div className="box-errors">
-                    {isSubmitted && errors.passwordEmpty}
-                </div>
-                <input type="submit" value="Envoyer" />
+
+                <input
+                    type="submit"
+                    value="Envoyer"
+                    className="connexion-button"
+                />
             </form>
             <a href="#">Mot de passe oublié ?</a>
         </main>

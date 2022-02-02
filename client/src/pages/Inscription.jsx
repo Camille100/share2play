@@ -42,37 +42,40 @@ function Inscription() {
 
     return (
         <div className="inscription">
+            <h1>INSCRIPTION</h1>
             <form onSubmit={(e) => handleSubmit(onSubmit, e)}>
-                <div className="box-input">
-                    <label htmlFor="lastName">Nom : </label>
-                    <input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        required="required"
-                        onChange={handleChange}
-                    />
-                    <div className="box-errors">
-                        {isSubmitted && errors.lastNameEmpty}
+                <div className="name-box">
+                    <div className="box-input last-name">
+                        <label htmlFor="lastName">Nom</label>
+                        <input
+                            type="text"
+                            name="lastName"
+                            id="lastName"
+                            required="required"
+                            onChange={handleChange}
+                        />
+                        <div className="box-errors">
+                            {isSubmitted && errors.lastNameEmpty}
+                        </div>
+                    </div>
+
+                    <div className="box-input">
+                        <label htmlFor="firstName">Prénom</label>
+                        <input
+                            type="text"
+                            name="firstName"
+                            id="firstName"
+                            required="required"
+                            onChange={handleChange}
+                        />
+                        <div className="box-errors">
+                            {isSubmitted && errors.firstNameEmpty}
+                        </div>
                     </div>
                 </div>
 
                 <div className="box-input">
-                    <label htmlFor="firstName">Prénom : </label>
-                    <input
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        required="required"
-                        onChange={handleChange}
-                    />
-                    <div className="box-errors">
-                        {isSubmitted && errors.firstNameEmpty}
-                    </div>
-                </div>
-
-                <div className="box-input">
-                    <label htmlFor="pseudo">Pseudo : </label>
+                    <label htmlFor="pseudo">Pseudo</label>
                     <input
                         type="text"
                         name="pseudo"
@@ -82,7 +85,7 @@ function Inscription() {
                 </div>
 
                 <div className="box-input">
-                    <label htmlFor="address">Adresse : </label>
+                    <label htmlFor="address">Adresse</label>
                     <input
                         type="text"
                         name="address"
@@ -95,34 +98,38 @@ function Inscription() {
                     </div>
                 </div>
 
-                <div className="box-input">
-                    <label htmlFor="zip">Code postal : </label>
-                    <input
-                        type="text"
-                        name="zip"
-                        id="zip"
-                        required="required"
-                        onChange={handleChange}
-                    />
-                    <div className="box-errors">
-                        {isSubmitted && errors.zipEmpty}
+                <div className="zip-city-box">
+                    <div className="box-input zip">
+                        <label htmlFor="zip">Code postal</label>
+                        <input
+                            type="text"
+                            name="zip"
+                            id="zip"
+                            required="required"
+                            onChange={handleChange}
+                        />
+                        <div className="box-errors">
+                            {isSubmitted && errors.zipEmpty}
+                        </div>
+                    </div>
+
+                    <div className="box-input">
+                        <label htmlFor="city">Commune</label>
+                        <input
+                            type="text"
+                            name="city"
+                            id="city"
+                            required="required"
+                            onChange={handleChange}
+                        />
+                        <div className="box-errors">
+                            {isSubmitted && errors.cityEmpty}
+                        </div>
                     </div>
                 </div>
 
                 <div className="box-input">
-                    <label htmlFor="city">Commune : </label>
-                    <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        required="required"
-                        onChange={handleChange}
-                    />
-                    {isSubmitted && errors.cityEmpty}
-                </div>
-
-                <div className="box-input">
-                    <label htmlFor="email">Adresse mail : </label>
+                    <label htmlFor="email">Adresse mail</label>
                     <input
                         type="email"
                         name="email"
@@ -130,12 +137,14 @@ function Inscription() {
                         required="required"
                         onChange={handleChange}
                     />
-                    {isSubmitted && errors.emailEmpty && errors.emailValid}
+                    <div className="box-errors">
+                        {isSubmitted && errors.emailEmpty && errors.emailValid}
+                    </div>
                 </div>
 
                 <div className="box-input">
                     <label htmlFor="emailConfirm">
-                        Confirmez votre adresse mail :{' '}
+                        Confirmez votre adresse mail{' '}
                     </label>
                     <input
                         type="email"
@@ -144,13 +153,15 @@ function Inscription() {
                         required="required"
                         onChange={handleChange}
                     />
-                    {isSubmitted &&
-                        errors.emailConfirmEmpty &&
-                        errors.emailConfirmEqual}
+                    <div className="box-errors">
+                        {isSubmitted &&
+                            errors.emailConfirmEmpty &&
+                            errors.emailConfirmEqual}
+                    </div>
                 </div>
 
                 <div className="box-input">
-                    <label htmlFor="password">Mot de passe : </label>
+                    <label htmlFor="password">Mot de passe</label>
                     <input
                         type="password"
                         name="password"
@@ -158,16 +169,22 @@ function Inscription() {
                         required="required"
                         onChange={handleChange}
                     />
-                    {isSubmitted &&
-                        errors.passwordEmpty &&
-                        errors.passwordLengthCharacter &&
-                        errors.passwordLowercase &&
-                        errors.passwordNoSpace &&
-                        errors.passwordSpecialCharacter &&
-                        errors.passwordUppercase &&
-                        errors.passwordIny}
+                    <div className="box-errors">
+                        {isSubmitted &&
+                            errors.passwordEmpty &&
+                            errors.passwordLengthCharacter &&
+                            errors.passwordLowercase &&
+                            errors.passwordNoSpace &&
+                            errors.passwordSpecialCharacter &&
+                            errors.passwordUppercase &&
+                            errors.passwordIny}
+                    </div>
                 </div>
-                <input type="submit" value="Envoyer" />
+                <input
+                    type="submit"
+                    value="Envoyer"
+                    className="registration-button"
+                />
             </form>
         </div>
     );

@@ -1,6 +1,6 @@
 @import '../variables';
 
-.inscription {
+.Instrument {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,17 +49,10 @@
                 border-bottom: solid 1px $main-color;
             }
         }
-
-        .name-box,
-        .zip-city-box {
-            display: flex;
-            justify-content: space-between;
-
-            width: 100%;
-        }
-        .last-name,
-        .zip {
-            margin-right: 20px;
+        .instrument-img {
+            input {
+                border-bottom: none;
+            }
         }
 
         .box-errors {
@@ -69,7 +62,7 @@
             margin-top: 5px;
         }
 
-        .registration-button {
+        .instrument-registration-button {
             align-self: center;
 
             margin-top: 40px;
@@ -86,7 +79,7 @@
             cursor: pointer;
         }
 
-        .registration-button:active {
+        .instrument-registration-button:active {
             background-color: $off-color;
         }
     }

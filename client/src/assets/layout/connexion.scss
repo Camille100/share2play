@@ -1,6 +1,6 @@
 @import '../variables';
 
-.inscription {
+.connexion {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,18 +50,6 @@
             }
         }
 
-        .name-box,
-        .zip-city-box {
-            display: flex;
-            justify-content: space-between;
-
-            width: 100%;
-        }
-        .last-name,
-        .zip {
-            margin-right: 20px;
-        }
-
         .box-errors {
             font-size: 9px;
             color: rgb(216, 64, 64);
@@ -69,7 +57,7 @@
             margin-top: 5px;
         }
 
-        .registration-button {
+        .connexion-button {
             align-self: center;
 
             margin-top: 40px;
@@ -86,8 +74,13 @@
             cursor: pointer;
         }
 
-        .registration-button:active {
+        .connexion-button:active {
             background-color: $off-color;
         }
+    }
+
+    a {
+        font-size: 12px;
+        text-decoration: underline;
     }
 }

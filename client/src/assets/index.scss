@@ -1,17 +1,36 @@
 @import 'mixins.scss';
 @import 'variables.scss';
 @import './layout/inscription.scss';
+@import './layout/connexion.scss';
+@import './layout/navbar.scss';
+@import './layout/footer.scss';
+@import './layout/accueil.scss';
+@import './layout/instrument.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
 * {
     margin: 0;
     padding: 0;
 
     text-decoration: none;
+
+    font-family: 'Raleway', sans-serif;
+    color: rgb(110, 110, 110);
+
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+    .App {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
