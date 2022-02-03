@@ -14,7 +14,7 @@
     "multer": "^1.4.4"
   },
   "scripts": {
-    "start": "node_modules/nodemon app.js"
+    "start": "nodemon app.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
