@@ -114,3 +114,54 @@ exports.registration = async (req, res) => {
 
     return res.status(200).json(true);
 };
+
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+
+    const emailEmpty = isEmpty(
+        email,
+        'Vous devez indiquer votre adresse email'
+    );
+    const passwordEmpty = isEmpty(
+        password,
+        'Vous devez indiquer votre mot de passe'
+    );
+
+    if (emailEmpty.error || passwordEmpty.error) {
+        return res.json({
+            error: [
+                { message: emailEmpty.message },
+                { message: passwordEmpty.message },
+            ],
+        });
+    }
+
+    const user = await UserSchema.findOne({ email });
+
+    if (!user) {
+        return res.json({
+            error: [{ message: 'votre email ou mot de passe est incorrect' }],
+        });
+    }
+
+    const passwordCompare = await bcrypt.compare(password, user.password);
+
+    if (!passwordCompare) {
+        return res.json({
+            error: [{ message: 'votre email ou mot de passe est incorrect' }],
+        });
+    }
+
+    return res.status(200).json({
+        token: jwt.sign(
+            {
+                userId: user._id,
+                pseudo: user.pseudo,
+                lastName: user.lastName,
+                firstName: user.firstName,
+            },
+            'RANDOM_TOKEN_SECRET',
+            { expiresIn: '24h' }
+        ),
+    });
+};
