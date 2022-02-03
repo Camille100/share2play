@@ -1,0 +1,93 @@
+@import '../variables';
+
+.inscription {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //width: 100%;
+
+    max-width: 700px;
+
+    h1 {
+        font-size: 18px;
+        margin: 50px 0px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        //width: 100%;
+        padding: 20px;
+
+        .box-input {
+            display: flex;
+            flex-direction: column;
+            //align-items: flex-start;
+
+            width: 100%;
+
+            margin: 15px 0px;
+            label {
+                text-transform: uppercase;
+                font-size: 12px;
+                font-weight: bold;
+                margin: 15px 0px;
+            }
+
+            input {
+                padding: 3px 10px;
+                border-radius: 2px;
+                border: none;
+                border-bottom: solid 1px rgb(168, 168, 168);
+            }
+
+            input:focus {
+                outline: none;
+                border-bottom: solid 1px $main-color;
+            }
+        }
+
+        .name-box,
+        .zip-city-box {
+            display: flex;
+            justify-content: space-between;
+
+            width: 100%;
+        }
+        .last-name,
+        .zip {
+            margin-right: 20px;
+        }
+
+        .box-errors {
+            font-size: 9px;
+            color: rgb(216, 64, 64);
+
+            margin-top: 5px;
+        }
+
+        .registration-button {
+            align-self: center;
+
+            margin-top: 40px;
+            padding: 10px 30px;
+
+            border-radius: 5px;
+            border: none;
+
+            color: white;
+            background-color: $main-color;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        .registration-button:active {
+            background-color: $off-color;
+        }
+    }
+}

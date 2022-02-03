@@ -1,0 +1,53 @@
+@import '../variables';
+
+.Navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    width: 100%;
+
+    background-color: $main-color;
+
+    .navbar-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        max-width: 1200px;
+
+        padding: 10px 10px;
+
+        .logo {
+            a {
+                font-family: 'Monoton', cursive;
+                font-size: 30px;
+                color: white;
+            }
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+            li {
+                margin-left: 15px;
+                padding: 10px 15px;
+
+                cursor: pointer;
+                a {
+                    color: white;
+                }
+            }
+
+            :nth-child(2) {
+                background-color: white;
+                border-radius: 5px;
+                a {
+                    color: rgb(110, 110, 110);
+                }
+            }
+        }
+    }
+}
