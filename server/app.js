@@ -17,6 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user', userRouter);
 
-app.listen(3001, () => {
-    console.log(`Serveur connecter sur le 3001`);
+app.listen(process.env.PORT, () => {
+    console.log(`Serveur connecter sur le ${process.env.PORT}`);
 });
