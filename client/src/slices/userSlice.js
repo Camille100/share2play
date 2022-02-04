@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {};
 export const userSlice = createSlice({
@@ -7,10 +7,10 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         set: (state, action) => action.payload,
-        reset: (state) => initialState,
+        reset: (state) => null,
     },
 });
 
-export const { reset, set } = userSlice.actions;
+export const {reset, set} = userSlice.actions;
 
 export default userSlice.reducer;
